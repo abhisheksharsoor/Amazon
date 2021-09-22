@@ -1,0 +1,31 @@
+Given a sorted array, find the two numbers whose sum is closest to given number in O(n) complexity
+ #include <stdlib.h>
+#include<stdio.h>
+int main()
+{
+  int arr[]= {14,16,19,21,46,84,126,169};
+  int N = sizeof(arr)/sizeof(arr[0]);
+  
+  int x;
+  scanf("%d",&x);
+  
+
+  int left = 0, right = N-1, sum = 0, closest = 2147483647, first,second; 
+  
+
+  while(left < right)
+  {
+    sum = arr[left] + arr[right];
+    if(abs(x -sum) < closest)
+    {
+      closest = abs(x -sum);
+      first=arr[left];
+      second=arr[right];
+    }
+    if(sum > x)
+      right--;
+    else if(sum <= x)
+      left++;
+  }
+printf("(%d,%d)",first,second);
+}
